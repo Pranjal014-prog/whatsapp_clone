@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Dialog ,Box,Typography,List,ListItem,styled} from "@mui/material";
 import { qrCodeImage } from "../../constant/data";
-import { GoogleLogin } from '@react-oauth/google';
+// import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from 'jwt-decode';
 import { AccountContest } from "../../contest/AccountProvider";
 const Component=styled(Box)`
@@ -67,10 +67,7 @@ const LoginDialog=()=>{
                 <Box style={{position:'relative'}}>
                     <Qrcode src={qrCodeImage} alt="qr code"/>
                     <Box style={{position:'absolute',top:'50%',transform: 'translatext(25%)'}}>
-                       <GoogleLogin
-                        onSuccess={onLoginSuccess}
-                          onError={onLoginError}
-                       /> 
+                     
                     </Box>
                 </Box>
             </Component>

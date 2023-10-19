@@ -1,9 +1,11 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Dialog ,Box,Typography,List,ListItem,styled} from "@mui/material";
 import { qrCodeImage } from "../../constant/data";
 // import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from 'jwt-decode';
 import { AccountContest } from "../../contest/AccountProvider";
+import LoginPage from "./Login.jsx";
+import RegistrationPage from "./Register.jsx";
 const Component=styled(Box)`
  display: flex;
 `
@@ -42,12 +44,11 @@ const dialogStyle={
 }
 const LoginDialog=()=>{
     const {setAccount}=useContext(AccountContest);
-    const onLoginSuccess=(res)=>{
-        const decoded=jwt_decode(res.credential);
-        setAccount(decoded);
-    }
-    const onLoginError=(res)=>{
-
+    const [login,SetLogin]=useState(false);
+    const onLoginSuccess=()=>{
+        SetLogin(true);
+        // const decoded=jwt_decode(res.credential);
+        // setAccount(decoded);
     }
     return (
         <Dialog open={true}
@@ -67,7 +68,8 @@ const LoginDialog=()=>{
                 <Box style={{position:'relative'}}>
                     <Qrcode src={qrCodeImage} alt="qr code"/>
                     <Box style={{position:'absolute',top:'50%',transform: 'translatext(25%)'}}>
-                     
+                     <button onClick={onLoginSuccess}> SignIn </button>
+                     {SetLogin && <LoginPage />}
                     </Box>
                 </Box>
             </Component>

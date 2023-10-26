@@ -1,6 +1,9 @@
 import { Dialog,Box,styled } from "@mui/material";
 import EmptyChat from "./chat/EmptyChat";
 import Menu from "./menu/Menu";
+import ChatBox from "./chat/Chatbox";
+import { useContext } from "react";
+import { AccountContest } from "../../contest/AccountProvider";
 const dialogStyle={
     height:'96%',
     width: '100%',
@@ -24,6 +27,7 @@ const RightComponent=styled(Box)`
    border-left: 1px solid rgba(0,0,0,0.14);
 `
 const ChatDialog=()=>{
+    const {person}=useContext(AccountContest);
     return(
         <Dialog open={true}
            PaperProps={{sx:dialogStyle}}
@@ -35,7 +39,7 @@ const ChatDialog=()=>{
                     <Menu/>
                 </LeftComponent>
                 <RightComponent>
-                    <EmptyChat/>
+                    {Object.keys(person).length? <ChatBox/> : <EmptyChat/>}
                 </RightComponent>
             </Component>
        </Dialog>

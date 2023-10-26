@@ -44,7 +44,7 @@ const Header=()=>{
            <Image src={image} alt='dp' onClick={()=>toggleDrawer()}/>
            <Wrapper>
             <ChatIcon/>
-            <HeaderMenu/>
+            <HeaderMenu setOpenDrawer={setOpenDrawer}/>
            </Wrapper>
         </Component>
         <Infodrawer open={openDrawer} setOpen={setOpenDrawer}/>

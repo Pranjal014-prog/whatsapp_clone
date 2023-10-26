@@ -2,7 +2,7 @@ export const iconPDF = 'https://cdn4.iconfinder.com/data/icons/logos-and-brands/
 
 export const defaultProfilePicture = 'https://static.straitstimes.com.sg/s3fs-public/articles/2020/12/01/af_moneyheist_011220.jpg';
 
-export const emptyChatImage = 'https://i.gadgets360cdn.com/large/whatsapp_multi_device_support_update_image_1636207150180.jpg';
+export const EmptyChatImage = 'https://akm-img-a-in.tosshub.com/indiatoday/images/story/202111/Screenshot_2021-11-12_at_1.51._0_1200x768.png?size=690:388';
 
 export const qrCodeImage = 'https://www.ginifab.com/feeds/qr_code/img/qrcode.jpg';
 

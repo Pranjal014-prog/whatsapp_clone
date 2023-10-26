@@ -1,11 +1,9 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Dialog ,Box,Typography,List,ListItem,styled} from "@mui/material";
 import { qrCodeImage } from "../../constant/data";
 // import { GoogleLogin } from '@react-oauth/google';
-import jwt_decode from 'jwt-decode';
-import { AccountContest } from "../../contest/AccountProvider";
-import LoginPage from "./Login.jsx";
-import RegistrationPage from "./Register.jsx";
+// import { AccountContest } from "../../contest/AccountProvider";
+import LoginPage from "./login/Login.jsx";
 const Component=styled(Box)`
  display: flex;
 `
@@ -42,37 +40,42 @@ const dialogStyle={
     boxShadow:  'none',
     overflow:   'hidden'
 }
-const LoginDialog=()=>{
-    const {setAccount}=useContext(AccountContest);
-    const [login,SetLogin]=useState(false);
-    const onLoginSuccess=()=>{
-        SetLogin(true);
-        // const decoded=jwt_decode(res.credential);
+const LoginDialog = () => {
+    // const { setAccount } = useContext(AccountContest);
+    const [login, setLogin] = useState(false);
+    const onLoginSuccess = () => {
+        setLogin(true);
+        // const decoded = jwt_decode(res.credential);
         // setAccount(decoded);
     }
+
     return (
-        <Dialog open={true}
-           PaperProps={{sx:dialogStyle}}
-           hideBackdrop={true}
+        <Dialog
+            open={true}
+            PaperProps={{ sx: dialogStyle }}
+            hideBackdrop={true}
         >
-            <Component>
-                <Container>
-                   <Title>To Use WhatsApp On your Computer</Title>
-                   <StyledList>
-                    <ListItem>Open whatsApp on your computer</ListItem>
-                    <ListItem>1. Open whatsApp on your phone</ListItem>
-                    <ListItem>2. Tap menu setting and select whatsApp web</ListItem>
-                    <ListItem>3. Point your Phone to this screen to capture the code</ListItem>
-                    </StyledList> 
-                </Container>
-                <Box style={{position:'relative'}}>
-                    <Qrcode src={qrCodeImage} alt="qr code"/>
-                    <Box style={{position:'absolute',top:'50%',transform: 'translatext(25%)'}}>
-                     <button onClick={onLoginSuccess}> SignIn </button>
-                     {SetLogin && <LoginPage />}
+            {login ?
+                <LoginPage />
+                :
+                <Component>
+                    <Container>
+                        <Title>To Use WhatsApp On Your Computer</Title>
+                        <StyledList>
+                            <ListItem>Open WhatsApp on your computer</ListItem>
+                            <ListItem>1. Open WhatsApp on your phone</ListItem>
+                            <ListItem>2. Tap menu setting and select WhatsApp web</ListItem>
+                            <ListItem>3. Point your Phone to this screen to capture the code</ListItem>
+                        </StyledList>
+                    </Container>
+                    <Box style={{ position: 'relative' }}>
+                        <Qrcode src={qrCodeImage} alt="qr code" />
+                        <Box style={{ position: 'absolute', top: '50%', transform: 'translateY(25%)' }}>
+                            <button onClick={onLoginSuccess}>SignIn</button>
+                        </Box>
                     </Box>
-                </Box>
-            </Component>
+                </Component>
+            }
         </Dialog>
     )
 }
